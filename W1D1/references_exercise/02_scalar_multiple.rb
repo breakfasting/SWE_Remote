@@ -6,8 +6,10 @@
 # to the object_id of the returned array. The exact object_ids you get back don't matter. We just want the ids
 # to be the same before and after calling your method.
 
-def scalar_multiple!(array, multiplier)
+# array map
 
+def scalar_multiple!(array, multiplier)
+    array.map! { |num| num * multiplier }
 end
 
 

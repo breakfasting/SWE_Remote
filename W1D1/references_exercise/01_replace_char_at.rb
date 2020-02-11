@@ -7,7 +7,8 @@
 # to be the same before and after calling your method.
 
 def replace_char_at!(str, char, idx)
-
+    str[idx] = char
+    str
 end
 
 
@@ -23,3 +24,6 @@ p str_2.object_id                       # => 70120944769940
 result_2 = replace_char_at!(str_2, "!", 2) 
 p result_2                              # => "wo!ld"
 p result_2.object_id                    # => 70120944769940
+
+
+

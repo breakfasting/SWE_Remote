@@ -10,7 +10,18 @@
 # to be the same before and after calling your method.
 
 
+# if amt is positive shift and push()
+# if amt is neg pop and unshift()
+# repeat for amt
+
 def my_rotate!(array, amt)
+    if amt > 0 
+        amt.times { array.push(array.shift) }
+    else
+        (amt*-1).times { array.unshift(array.pop)}
+    end
+
+    array
 
 end
 
