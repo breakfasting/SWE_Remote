@@ -3,8 +3,9 @@ def bubble_sort(arr)
   until sorted
     sorted = true
     (0...arr.length - 1).each do |i|
-      if arr[i] > arr[i + 1]
-        arr[i], arr[i + 1] = arr[i + 1], arr[i]
+      if arr[i].nil? || arr[i] > arr[i + 1]
+        # Ruby does OR logic left to right, so doesn't compare the nil to an integer
+        arr[i], arr[i + 1] = arr[i + 1], arr[i] # Dual Assignment
         sorted = false
       end
     end
