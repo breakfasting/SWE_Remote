@@ -3,6 +3,12 @@
 # that have at least the given length. The length argument should be optional; if no length
 # is passed in, then 5 should be used as the length.
 
+# do word that is greater or eq to the length given
+# argument is optional, default length is 5
+
+def filter_lengths(strings, length = 5)
+  strings.select { |word| word.length >= length }
+end
 
 p filter_lengths(["pear", "dragonfruit", "fig", "clementine"], 4)   # => ["pear", "dragonfruit", "clementine"]
 p filter_lengths(["pear", "dragonfruit", "fig", "clementine"])      # => ["dragonfruit", "clementine"]
