@@ -44,8 +44,6 @@ def unique_chars?(str) #hello
   true
 end
 
-p unique_chars?("computer")
-
 def dupe_indices(array) # ["a", "b", "c", "c", "b"] -> { "b" => [1, 4], "c" => [2, 3] }
   dupe = {}
   array.each_with_index do |ele, i|
