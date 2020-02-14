@@ -453,6 +453,18 @@ p squaragonal?([
 p "---------pascals----------"
 
 def pascals_triangle(num)
+  return [1] if n == 1
+  return [1, 1] if n == 2
+
+  pyramid = [[1], [1, 1]]
+  newPyramid = []
+  (n - 2).times do |i|
+    pyramid << [pyramid[i] + newPyramid[i + 1]]
+  end
+  pyramid
+end
+
+def pascals_triangle_ori(num)
   firstLevel = [1]
   pyramid = [firstLevel]
   while num > 1 # level 2 to higher
@@ -623,14 +635,30 @@ p triangular_word?("sink")      # false
 # [3, 5, 6, 2, 1] -> [3, 2, 1] -> [1]
 # Code examples
 
-# p consecutive_collapse([3, 4, 1])                     # [1]
-# p consecutive_collapse([1, 4, 3, 7])                  # [1, 7]
-# p consecutive_collapse([9, 8, 2])                     # [2]
-# p consecutive_collapse([9, 8, 4, 5, 6])               # [6]
-# p consecutive_collapse([1, 9, 8, 6, 4, 5, 7, 9, 2])   # [1, 9, 2]
-# p consecutive_collapse([3, 5, 6, 2, 1])               # [1]
-# p consecutive_collapse([5, 7, 9, 9])                  # [5, 7, 9, 9]
-# p consecutive_collapse([13, 11, 12, 12])              # []
+def consecutive_collapse(arr)
+  collapsed = true
+  while collapsed
+    collapsed = false
+    i = 0
+    while i < arr.length - 1
+      if arr[i] - arr[i + 1] == 1 || arr[i] - arr[i + 1] == -1
+        arr = arr[0...i] + arr[i + 2..-1]
+        collapsed = true
+      end
+      i += 1
+    end
+  end
+  arr
+end
+
+p consecutive_collapse([3, 4, 1])                     # [1]
+p consecutive_collapse([1, 4, 3, 7])                  # [1, 7]
+p consecutive_collapse([9, 8, 2])                     # [2]
+p consecutive_collapse([9, 8, 4, 5, 6])               # [6]
+p consecutive_collapse([1, 9, 8, 6, 4, 5, 7, 9, 2])   # [1, 9, 2]
+p consecutive_collapse([3, 5, 6, 2, 1])               # [1]
+p consecutive_collapse([5, 7, 9, 9])                  # [5, 7, 9, 9]
+p consecutive_collapse([13, 11, 12, 12])              # []
 
 # pretentious_primes
 # Write a method pretentious_primes that takes accepts an array and a number, n, as arguments.
@@ -651,10 +679,33 @@ p triangular_word?("sink")      # false
 
 # Examples
 
-# p pretentious_primes([4, 15, 7], 1)           # [5, 17, 11]
-# p pretentious_primes([4, 15, 7], 2)           # [7, 19, 13]
-# p pretentious_primes([12, 11, 14, 15, 7], 1)  # [13, 13, 17, 17, 11]
-# p pretentious_primes([12, 11, 14, 15, 7], 3)  # [19, 19, 23, 23, 17]
+def pretentious_primes(arr, num)
+  new_arr = []
+  if num > 0
+    arr.each do |ele|
+      i = ele + 1
+      count = 0
+      while true
+        if is_prime?(i)
+          count += 1
+        end
+        if count == num
+          new_arr << i
+          break
+        end
+        i += 1
+      end
+    end
+  else
+    # haven't done the num < 0 part haha
+  end
+  new_arr
+end
+
+p pretentious_primes([4, 15, 7], 1)           # [5, 17, 11]
+p pretentious_primes([4, 15, 7], 2)           # [7, 19, 13]
+p pretentious_primes([12, 11, 14, 15, 7], 1)  # [13, 13, 17, 17, 11]
+p pretentious_primes([12, 11, 14, 15, 7], 3)  # [19, 19, 23, 23, 17]
 # p pretentious_primes([4, 15, 7], -1)          # [3, 13, 5]
 # p pretentious_primes([4, 15, 7], -2)          # [2, 11, 3]
 # p pretentious_primes([2, 11, 21], -1)         # [nil, 7, 19]
