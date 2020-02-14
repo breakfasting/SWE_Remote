@@ -453,18 +453,6 @@ p squaragonal?([
 p "---------pascals----------"
 
 def pascals_triangle(num)
-  return [1] if n == 1
-  return [1, 1] if n == 2
-
-  pyramid = [[1], [1, 1]]
-  newPyramid = []
-  (n - 2).times do |i|
-    pyramid << [pyramid[i] + newPyramid[i + 1]]
-  end
-  pyramid
-end
-
-def pascals_triangle_ori(num)
   firstLevel = [1]
   pyramid = [firstLevel]
   while num > 1 # level 2 to higher
@@ -697,7 +685,7 @@ def pretentious_primes(arr, num)
       end
     end
   else
-    # haven't done the num < 0 part haha
+    num = -1 * num
   end
   new_arr
 end
