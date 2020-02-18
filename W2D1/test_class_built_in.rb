@@ -11,7 +11,7 @@ class Car
   end
 
   def change_class_var(num)
-     @@wheels = num
+    @@wheels = num
   end
 
   def wheels
@@ -27,9 +27,9 @@ class Car
   end
 end
 
-car1 = Car.new('toyota', 'red')
+car1 = Car.new("toyota", "red")
 p car1
-car1.color = 'blue'
+car1.color = "blue"
 p car1
 
 p car1.wheels
@@ -39,3 +39,5 @@ Car.change
 p car1.wheels
 
 p Car.wheels
+
+p car1.methods
